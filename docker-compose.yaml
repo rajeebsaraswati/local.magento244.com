@@ -1,0 +1,79 @@
+version: "3"
+services:
+  web:
+    image: webdevops/php-apache:7.4-alpine
+    container_name: magento244Web
+    user: root
+    environment:
+      - WEB_ALIAS_DOMAIN=local.magento244.com
+      - WEB_DOCUMENT_ROOT=/app
+      - PHP_DATE_TIMEZONE=EST
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=300
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=1024M
+      - COMPOSER_VERSION=1
+    #      - TZ=America/Los_Angeles
+    volumes:
+      - "./src/:/app"
+    ports:
+      - "8093:80"
+    #      - "445:443"
+    #      - "32823:22"
+    links:
+      - mysql
+      # - redis
+  mysql:
+    image: mariadb:10.4
+    container_name: magento244MYSQL
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=magento244
+    #      - TZ=America/Los_Angeles
+    volumes:
+      - "../data/magento244-data:/var/lib/mysql"
+      - ".docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+  elasticsearch:
+    image: elasticsearch:7.9.3
+    container_name: magento244es01
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+  # redis:
+  #   image: redis:6.2
+  #   container_name: Magento244REDIS
+  #   volumes:
+  #     - ../data/magento244-redis-data:/data
+  #   ports:
+  #     - 6379
+  #   command: redis-server
+  # varnish:
+  #   image: varnish:7.0
+  #   container_name: Magento244VARNISH
+  #   depends_on:
+  #     - web
+  #   volumes:
+  #     - varnish-data:/etc/default/varnish
+  #     - ./default.vcl:/etc/varnish/default.vcl
+  #   ports:
+  #     - "8080:8080"
+  #     - "6082:6082"
+  #   links:
+  #     - web
+volumes:
+  data01:
+    driver: local
+    # db-data:
+    #   external: false
+    #    magento236-redis-data:
+    #      external: false
+    # varnish-data:
+    #   external: false

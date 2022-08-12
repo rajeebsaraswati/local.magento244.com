@@ -1,0 +1,2 @@
+1. How are the *.phtml templates rendered?
+2. What are the template engines in Magento-2?
