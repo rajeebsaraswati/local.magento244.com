@@ -1,0 +1,9 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<h2>Proxy Example</h2>
+<ul>
+    <?php foreach ($block->getViewModel()->getProducts() as $product): ?>
+    <li><?= $product ?></li>
+    <?php endforeach; ?>
+</ul>
