@@ -48,7 +48,8 @@
             "**/Test/**"
         ],
         "files": [
-            "app/etc/NonComposerComponentRegistration.php"
+            "app/etc/NonComposerComponentRegistration.php",
+            "app/code/Training/FirePhp/functions/logger.php"
         ],
         "psr-0": {
             "": [
