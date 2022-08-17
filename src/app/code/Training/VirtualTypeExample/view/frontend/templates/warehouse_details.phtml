@@ -1,0 +1,11 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+
+<?php
+$warehouse = $block->getViewModel()->getWarehouseData($block->getRequest());
+?>
+
+<?php if ($warehouse): ?>
+    <?= $warehouse->getName() . " - " . $warehouse->getCode() ?>
+<?php endif; ?>
