@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Training\VirtualTypeExample\Model;
+namespace Training\WarehouseManagement\Model;
 
-use Training\VirtualTypeExample\Api\WarehouseManagementInterface;
+use Training\WarehouseManagement\Api\WarehouseManagementInterface;
 
 class WarehouseManagement implements WarehouseManagementInterface
 {

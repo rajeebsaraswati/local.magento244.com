@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Training\VirtualTypeExample\Model;
 
+use Training\WarehouseManagement\Model\WarehouseManagement;
+
 class WarehouseManagementExtended extends WarehouseManagement
 {
     protected function getAllWarehouses(): array

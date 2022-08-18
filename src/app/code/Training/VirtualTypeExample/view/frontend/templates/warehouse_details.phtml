@@ -3,7 +3,9 @@
 ?>
 
 <?php
-$warehouse = $block->getViewModel()->getWarehouseData($block->getRequest());
+/** @var \Training\VirtualTypeExample\ViewModel\WarehouseDataProviderInterface $viewModel */
+$viewModel = $block->getViewModel();
+$warehouse = $viewModel->getWarehouseData($block->getRequest());
 ?>
 
 <?php if ($warehouse): ?>

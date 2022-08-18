@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Training\VirtualTypeExample\Api;
+namespace Training\WarehouseManagement\Api;
 
 interface WarehouseManagementInterface
 {
